@@ -31,7 +31,7 @@ class Server:
 				msg = self.c.recv(1024).decode()
 				print("Client:",msg)
 			except:
-				print("Error Occured! Could not send your message")
+				print("Error Occured! Could not recieve message")
 				break
 
 			if msg == "Bye server!":

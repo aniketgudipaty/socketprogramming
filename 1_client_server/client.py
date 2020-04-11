@@ -30,7 +30,7 @@ class Client:
 				msg = self.sock.recv(1024).decode()
 				print("Server:",msg)
 			except:
-				print("Error Occured! Could not send your message")
+				print("Error Occured! Could not recieve message")
 				break
 
 			if msg == "Bye client!":
