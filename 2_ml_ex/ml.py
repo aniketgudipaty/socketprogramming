@@ -18,8 +18,8 @@ random.seed(0)
 dataset = loadtxt('annthyroid.csv' , delimiter = ',')
 
 train_size = int((7200*(0.7)))
-X_test = dataset[0:train_size,0:6]
-Y_test = dataset[0:train_size,6]
+X_train = dataset[0:train_size,0:6]
+Y_train = dataset[0:train_size,6]
 X_val = dataset[train_size:,0:6]
 Y_val = dataset[train_size:,6]
 
@@ -29,7 +29,7 @@ model.add(Dense(30 , activation= 'relu'))
 model.add(Dense(1,activation='sigmoid'))
 
 model.compile(loss= 'binary_crossentropy', optimizer= 'adam', metrics= ['accuracy',Precision(name='precision') , Recall(name='recall')])
-model.fit(X_test, Y_test, epochs= 100, batch_size=10)
+model.fit(X_train, Y_train, epochs= 100, batch_size=10)
 
 classes = model.predict_classes(X_val)
 classes = classes[:,0]
@@ -51,10 +51,10 @@ print("F1_score : " , f)
 X_neg = numpy.ndarray(shape=(1,6))
 X_pos = numpy.ndarray(shape=(1,6))
 for i in range(train_size):
-    if Y_test[i] == 0:
-        X_neg = numpy.append(X_neg,numpy.resize(X_test[i,:],(1,6)),axis=0)
+    if Y_train[i] == 0:
+        X_neg = numpy.append(X_neg,numpy.resize(X_train[i,:],(1,6)),axis=0)
     else:
-        X_pos = numpy.append(X_pos,numpy.resize(X_test[i,:],(1,6)),axis=0)
+        X_pos = numpy.append(X_pos,numpy.resize(X_train[i,:],(1,6)),axis=0)
 
 fig = plt.figure()
 ax = fig.add_subplot()
