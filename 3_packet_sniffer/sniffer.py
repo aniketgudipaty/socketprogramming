@@ -32,8 +32,12 @@ class Sniffer:
                 self.threads.append(t)
 
         except KeyboardInterrupt:   #break the loop , close and dump all data into file
-            print("Keyboard Interrupt! Closing socket")
+            print("\nKeyboard Interrupt! Closing socket")
             self.sock.close()
+
+            for thread in self.threads:
+                thread.join()
+
             if __name__ == '__main__':
                 sys.exit()
 
